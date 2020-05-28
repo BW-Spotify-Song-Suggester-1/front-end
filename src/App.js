@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import { Route, Link } from 'react-router-dom'
-import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Tab, Tabs, AppBar, Paper, Container } from "@material-ui/core"
 import headphones from './img/headphones.jpg'
 
@@ -14,10 +14,18 @@ function App() {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    axios.get('https://reqres.in/api/user')
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => console.log(err))
+  },[])
+  
+
   return (
     <div className='container'>
       <div className='container-left' styles={{ backgroundImage:`url(${headphones})` }}>
-        {/* <img src={headphones} alt='headphones' /> */}
       </div>
       <div className='container-right'>
         <Container maxWidth='sm'>

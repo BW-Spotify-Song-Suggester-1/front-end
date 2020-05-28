@@ -1,4 +1,5 @@
-
+import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 import React, { useState } from "react";
 import { Button, TextField, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -31,7 +32,8 @@ const initialState = {
   password: ""
 };
 const SignUp = props => {
-  const classes = useStyles();
+  const history = useHistory()
+  const classes = useStyles()
 
   const [newUser, setNewUser] = useState(initialState);
   const schema = object().shape({
@@ -41,6 +43,21 @@ const SignUp = props => {
     password: string().required("Password is required")
   });
 
+  const registerUser = newUser => {
+    axios.post('https://reqres.in/api/user', newUser)
+      .then(res => {
+        setNewUser([res.data])
+        console.log(res.data)
+        history.push('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      .finally(() => {
+        setNewUser(initialState)
+      })
+}
+
   const { register, handleSubmit, errors } = useForm({
     validationSchema: schema
   });
@@ -49,10 +66,11 @@ const SignUp = props => {
       ...newUser,
       [e.target.name]: e.target.value
     });
-  };
+  }; 
+
   const onSubmit = () => {
     console.log(newUser);
-    props.registerUser(newUser);
+    registerUser(newUser);
   };
 
   return (
