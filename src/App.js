@@ -3,9 +3,8 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import { Route, Link } from 'react-router-dom'
 import { withStyles, makeStyles } from "@material-ui/core/styles";
-import { Tab, Tabs, AppBar, Paper } from "@material-ui/core"
-
-
+import { Tab, Tabs, AppBar, Paper, Container } from "@material-ui/core"
+import headphones from './img/headphones.jpg'
 
 function App() {
 
@@ -17,10 +16,11 @@ function App() {
 
   return (
     <div className='container'>
-      <div className='container-left'>
-        <img src='' alt='headphones' />
+      <div className='container-left' styles={{ backgroundImage:`url(${headphones})` }}>
+        {/* <img src={headphones} alt='headphones' /> */}
       </div>
       <div className='container-right'>
+        <Container maxWidth='sm'>
         <Paper square>
           <AppBar position='static' color='danger'>
           <Tabs
@@ -36,6 +36,7 @@ function App() {
           </Tabs>
         </AppBar>
         </Paper>
+        </Container>
   
             
         <Route exact path='/'>

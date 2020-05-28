@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
 import { Button, TextField, Container  } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
@@ -10,7 +9,7 @@ const ColorButton = withStyles(theme => ({
     color: "white",
     backgroundColor: "#FF1644",
     "&:hover": {
-      backgroundColor: "#FF1644"
+      backgroundColor: "#C0421D"
     }
   }
 }))(Button);
@@ -20,7 +19,7 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1)
     },
     width: {
-      width: 400
+      width: 500
     }
 }));
 
@@ -89,11 +88,10 @@ const Login = props => {
           </div>
           <div className='btn`'>
             <ColorButton
-              style={{ margin: 10 }}
+              style={{ margin: 10, width: 520 }}
               type="submit"
               variant="contained"
               color="secondary"
-              className={classes.width}
             >
             Submit
             </ColorButton>

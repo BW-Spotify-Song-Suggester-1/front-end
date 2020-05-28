@@ -4,7 +4,6 @@ import { Button, TextField, Container } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
-import { sizing, width } from '@material-ui/system'
 
 const ColorButton = withStyles(theme => ({
   root: {
@@ -21,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   width: {
-    width: 400
+    width: 500
   }
 }));
 
@@ -57,7 +56,7 @@ const SignUp = props => {
   };
 
   return (
-    <Container maxWidth='fluid'>
+    <Container maxWidth='sm'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div classNAme='wrapper'>
           <div className='first-name'>
@@ -126,11 +125,10 @@ const SignUp = props => {
           </div>
           <div className='btn'>
             <ColorButton
-              style={{ margin: 10 }}
+              style={{ margin: 10, width: 520 }}
               type="submit"
               variant="contained"
               color="secondary"
-              className={classes.width}
             >
               Submit
             </ColorButton>
