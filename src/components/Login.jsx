@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     width: {
       width: 500
     }
-}));
+})); 
 
 const initialState = {
   username: "",
