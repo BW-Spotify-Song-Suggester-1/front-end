@@ -1,61 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
-import { Route, Link } from 'react-router-dom'
-import { Tab, Tabs, AppBar, Paper, Container } from "@material-ui/core"
-import headphones from './img/headphones.jpg'
+import React from 'react';
+import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Login from './components/Login';
+import SignUpForm from './components/SignUpForm';
+import PrivateRoute from './components/PrivateRoute';
+import Dashboard from './components/Dashboard';
 
 function App() {
-
-  const [value, setValue] = useState(2);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  useEffect(() => {
-    axios.get('https://reqres.in/api/user')
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(err => console.log(err))
-  },[])
-  
-
   return (
-    <div className='container'>
-      <div className='container-left' styles={{ backgroundImage:`url(${headphones})` }}>
-      </div>
-      <div className='container-right'>
-        <Container maxWidth='sm'>
-        <Paper square>
-          <AppBar position='static' color='danger'>
-          <Tabs
-              value={value}
-              indicatorColor="secondary"
-              textColor="secondary"
-              variant='fullWidth'
-              onChange={handleChange}
-              aria-label="Sign In and Sign Up"
-            >
-              <Tab label="Sign In" component={ Link } to='/' />
-              <Tab label="Sign Up" component={ Link } to='/signup' />
-          </Tabs>
-        </AppBar>
-        </Paper>
-        </Container>
-  
-            
-        <Route exact path='/'>
-          <Login />
-        </Route>
-
-        <Route exact path='/signup'>
-          <SignUp />
-        </Route>
-
-      </div>
+    <div className="App">
+      <Switch>
+      <PrivateRoute exact path='/dashboard' component={Dashboard} />
+      <Route path='/login' render={(props) => <Login {...props}/>}/>
+        {/* <Route exact path='/login' component={Login} /> */}
+        <Route exact path='/signup' component={SignUpForm} />
+      </Switch>
     </div>
   );
 }
