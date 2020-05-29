@@ -8,7 +8,7 @@ import headphones from './img/headphones.jpg'
 
 function App() {
 
-  const [value, setValue] = useState(2);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -30,7 +30,7 @@ function App() {
       <div className='container-right'>
         <Container maxWidth='sm'>
         <Paper square>
-          <AppBar position='static' color='danger'>
+          <AppBar position='static' color='default'>
           <Tabs
               value={value}
               indicatorColor="secondary"
