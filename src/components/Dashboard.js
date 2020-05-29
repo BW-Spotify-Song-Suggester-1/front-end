@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-// import RecommendationList from './RecommendationList';
+import RecommendationList from './RecommendationList';
 import { connect } from 'react-redux';
 import { userRecs, trackRecs, clearRecs } from '../actions';
 

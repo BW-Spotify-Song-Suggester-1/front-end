@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization: token
         },
-        baseURL: 'https://spotify-api-prod.herokuapp.com/api'
+        baseURL: 'http://spotify-api-prod.herokuapp.com'
     })
 }

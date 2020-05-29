@@ -35,8 +35,7 @@ export const signUp = (credentials, history) => dispatch => {
     dispatch({ type: SIGNUP_START });
     
     axiosWithAuth()
-    .post('http://spotify-api-prod.herokuapp.com/auth/register', credentials)
-    // .post('http://spotify-api-prod.herokuapp.com/accounts/register', credentials)
+    .post('/auth/register', credentials)
     .then(res => {
         console.log('Successful Register: ', res);
         dispatch({ type: SIGNUP_SUCCESS });

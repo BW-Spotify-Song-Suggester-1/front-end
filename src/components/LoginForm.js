@@ -24,7 +24,7 @@ const LoginForm = ({ values, touched, errors}) => {
                 
 
                 <Field type="text" name="username" placeholder="enter username" />
-                <Field type="password" name="password" id="password" />
+                <Field type="password" name="password" id="password" placeholder="enter password"/>
 
                 <button type="submit">Login</button>
             </Form>
@@ -53,7 +53,7 @@ const FormikLoginForm = {
     handleSubmit(values, {resetForm, props, ...rest}){
         // rest.props.login({...values})
         axiosWithAuth()
-            .post('/auth/login', values)
+            .post('http://spotify-api-prod.herokuapp.com/auth/login', values)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 props.props.history.push('/dashboard')
