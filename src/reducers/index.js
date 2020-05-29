@@ -10,7 +10,8 @@ import {
     TRACK_ERROR,
     CLEAR_START,
     CLEAR_SUCCESS,
-    CLEAR_ERROR
+    CLEAR_ERROR,
+    SAVED_TRACKS
 } from '../actions';
 import { act } from 'react-dom/test-utils';
 
@@ -25,6 +26,7 @@ const initialState = {
     errorMssg: '',
     recs: [],
     similarRecs: [],
+    tracks: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -73,6 +75,10 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state, recs: action.payload
                 }
+            case SAVED_TRACKS:
+                return {
+                    ...state, tracks: action.payload
+                };
             default:
                 return state;
         }

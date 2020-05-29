@@ -30,6 +30,7 @@ export const login = (credentials, history) => dispatch => {
 export const SIGNUP_START = 'SIGNUP_START';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+export const SAVED_TRACKS = "SAVED_TRACKS"
 
 export const signUp = (credentials, history) => dispatch => {
     dispatch({ type: SIGNUP_START });
@@ -55,7 +56,7 @@ export const userRecs = () => dispatch => {
     dispatch({ type: FETCH_RECS });
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        .get(`http://spotify-api-prod.herokuapp.com/api/recommendations/${user_id}/recs`)
+        .get(`https://spotify-api-prod.herokuapp.com/api/recommendations/${user_id}/recs`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
             setTimeout(() => {
@@ -77,7 +78,7 @@ export const trackRecs = (data) => dispatch => {
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
         // .get(`http://spotify-api-prod.herokuapp.com/request/?search=${data}`)
-        .post(`http://spotify-api-prod.herokuapp.com/api/playlists/${user_id}`, data)
+        .post(`https://spotify-api-prod.herokuapp.com/api/playlists/${user_id}`, data)
         .then(res => {
             console.log('IT WORKED', res);
             setTimeout(() => {
@@ -93,7 +94,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const clearRecs = (playlist_id) => dispatch => {
     axiosWithAuth()
-        .delete(`http://spotify-api-prod.herokuapp.com/api/playlists/${playlist_id}`)
+        .delete(`https://spotify-api-prod.herokuapp.com/api/playlists/${playlist_id}`)
         .then(res => {
             console.log('DELETE RES: ', res)
             dispatch({ type: CLEAR_SUCCESS, payload: res.data})

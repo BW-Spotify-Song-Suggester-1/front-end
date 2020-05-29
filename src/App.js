@@ -11,7 +11,7 @@ import RecommendationList from "./components/RecommendationList"
 function App() {
   return (
     <div className="App">
-      <Navigation/>
+      {/* <Navigation/> */}
       <Switch>  
       <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <Route path='/login' render={(props) => <Login {...props}/>}/>
