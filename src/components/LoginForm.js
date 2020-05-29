@@ -6,9 +6,6 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 import '../App.css';
 
-//Redux Imports
-import { connect } from 'react-redux';
-import { login } from '../actions';
 
 const LoginForm = ({ values, touched, errors}) => {
     const [user, setUser] = useState({
@@ -17,9 +14,9 @@ const LoginForm = ({ values, touched, errors}) => {
             })
             
     return (
-        <LoginDiv>
-            <StyledHeader>Login to your account</StyledHeader>
-            <StyledP>Enter your info:</StyledP>
+        <div className="loginContainer">
+            <h2>Login</h2>
+            <h2>Please fill out the information below.</h2>
             <Form className="loginForm">
                 
                     {touched.username && errors.username && (<p className="error">{errors.username}</p>)}
@@ -29,42 +26,14 @@ const LoginForm = ({ values, touched, errors}) => {
                 <Field type="text" name="username" placeholder="enter username" />
                 <Field type="password" name="password" id="password" />
 
-                <StyledButton type="submit">Login</StyledButton>
+                <button type="submit">Login</button>
             </Form>
-            <br></br><br></br>
-            <StyledP>Don't have an account? <a className="loginLink" href="/signup"> Click here to register</a>!</StyledP>
-        </LoginDiv>
+            <p>Don't have an account? <Link to="/signup"> click here to register</Link>.</p>
+        </div>
     );
   };
 
-//styling for page
-const LoginDiv = styled.div`
-  margin: 0 auto;
-`
-
-const StyledHeader = styled.h2`
-  color: green;
-`
-const StyledP = styled.p`
-  color: green;
-`
-const StyledButton = styled.button`
-    background-color: green;
-    color: white;
-    border: none;
-    font-size: 1.1rem;
-    margin: 2% auto;
-    width: 40%;
-    padding: 2%;
-    border-radius: 10px;
-    cursor: pointer;
-
-    :hover {
-        background-color: black;
-    }
-`
-
-const FormikLoginForm = withFormik({
+const FormikLoginForm = {
     mapPropsToValues({ username, password }){
         return {
             username: username || '',
@@ -82,14 +51,20 @@ const FormikLoginForm = withFormik({
     }),
 
     handleSubmit(values, {resetForm, props, ...rest}){
-        props.login(values, props.props.history)
+        // rest.props.login({...values})
+        axiosWithAuth()
+            .post('/auth/login', values)
+            .then(res => {
+                localStorage.setItem('token', res.data.token);
+                props.props.history.push('/dashboard')
+                console.log(props);
+                console.log('Data: ', res);
+            })
+            .catch(err => {
+                localStorage.removeItem('token');
+                console.log('Problem Logging in: ', err)
+            })
     }
-  })(LoginForm);
+  };
 
-const mapStateToProps = state => ({
-    loggingIn: state.loggingIn
-})
-
-const Connect = connect(mapStateToProps, { login })(FormikLoginForm);
-
-export default Connect
+export default withFormik(FormikLoginForm)(LoginForm);

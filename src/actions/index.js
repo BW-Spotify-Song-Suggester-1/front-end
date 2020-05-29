@@ -35,8 +35,8 @@ export const signUp = (credentials, history) => dispatch => {
     dispatch({ type: SIGNUP_START });
     
     axiosWithAuth()
-    .post('https://spotify-api-prod.herokuapp.com/api/auth/register', credentials)
-    // .post('https://spotify-api-prod.herokuapp.com/accounts/register', credentials)
+    .post('http://spotify-api-prod.herokuapp.com/auth/register', credentials)
+    // .post('http://spotify-api-prod.herokuapp.com/accounts/register', credentials)
     .then(res => {
         console.log('Successful Register: ', res);
         dispatch({ type: SIGNUP_SUCCESS });
@@ -56,7 +56,7 @@ export const userRecs = () => dispatch => {
     dispatch({ type: FETCH_RECS });
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        .get(`https://spotify-api-prod.herokuapp.com/api/recommendations/${user_id}/recs`)
+        .get(`http://spotify-api-prod.herokuapp.com/api/recommendations/${user_id}/recs`)
         .then(res => {
             console.log('Recommendations Successfuly Loaded: ', res.data)
             setTimeout(() => {
@@ -77,8 +77,8 @@ export const trackRecs = (data) => dispatch => {
     dispatch({ type: TRACK_RECS })
     const user_id = localStorage.getItem('user_id')
     axiosWithAuth()
-        // .get(`https://spotify-api-prod.herokuapp.com/request/?search=${data}`)
-        .post(`https://spotify-api-prod.herokuapp.com/api/playlists/${user_id}`, data)
+        // .get(`http://spotify-api-prod.herokuapp.com/request/?search=${data}`)
+        .post(`http://spotify-api-prod.herokuapp.com/api/playlists/${user_id}`, data)
         .then(res => {
             console.log('IT WORKED', res);
             setTimeout(() => {
@@ -94,7 +94,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const clearRecs = (playlist_id) => dispatch => {
     axiosWithAuth()
-        .delete(`https://spotify-api-prod.herokuapp.com/api/playlists/${playlist_id}`)
+        .delete(`http://spotify-api-prod.herokuapp.com/api/playlists/${playlist_id}`)
         .then(res => {
             console.log('DELETE RES: ', res)
             dispatch({ type: CLEAR_SUCCESS, payload: res.data})
