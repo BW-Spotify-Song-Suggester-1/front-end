@@ -76,10 +76,10 @@ const SignUp = props => {
   return (
     <Container maxWidth='sm'>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div classNAme='wrapper'>
+        <div className='wrapper'>
           <div className='first-name'>
             <TextField 
-              style={{ margin: 10 }}
+              style={{ margin: 15 }}
               className={classes.width}
               color='secondary'
               variant="outlined"
@@ -96,7 +96,7 @@ const SignUp = props => {
           <div className='last-name'>
             <TextField
               className={classes.width}
-              style={{ margin: 10 }}
+              style={{ margin: 15 }}
               color='secondary'
               variant="outlined"
               required
@@ -112,7 +112,7 @@ const SignUp = props => {
           <div className='username'>
             <TextField
               className={classes.width}
-              style={{ margin: 10 }}
+              style={{ margin: 15 }}
               color='secondary'
               variant="outlined"
               required
@@ -128,7 +128,7 @@ const SignUp = props => {
           <div className='password'>
             <TextField
               className={ classes.width }
-              style={{ margin: 10 }}
+              style={{ margin: 15 }}
               color='secondary'
               variant="outlined"
               required
@@ -143,7 +143,7 @@ const SignUp = props => {
           </div>
           <div className='btn'>
             <ColorButton
-              style={{ margin: 10, width: 520 }}
+              style={{ margin: 15, width: 520 }}
               type="submit"
               variant="contained"
               color="secondary"

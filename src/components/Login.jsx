@@ -71,7 +71,7 @@ const Login = props => {
               onChange={HandleChange}
             />
           </div>
-          <div classNAme='password'>
+          <div className='password'>
             <TextField
               style={{ margin: 10 }}
               color='secondary'
