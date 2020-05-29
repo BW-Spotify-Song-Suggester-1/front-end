@@ -13,15 +13,15 @@ export const login = (credentials, history) => dispatch => {
             .then(res => {
                 setTimeout(() => {
                     localStorage.setItem('token', res.data.token);
-                    localStorage.setItem('user_id', res.data.user_id)
-                    dispatch({ type: LOGIN_SUCCESS, payload: localStorage.getItem('user_id')});
+                    localStorage.setItem('username', res.data.data.username)
+                    dispatch({ type: LOGIN_SUCCESS, payload: localStorage.getItem('username')});
                     history.push('/dashboard');
                     console.log('Data: ', res);
                 }, 1000)
             })
             .catch(err => {
                 localStorage.removeItem('token');
-                localStorage.removeItem('user_id');
+                localStorage.removeItem('username');
                 dispatch({ type: LOGIN_ERROR })
                 console.log('Problem Logging in: ', err)
             });
