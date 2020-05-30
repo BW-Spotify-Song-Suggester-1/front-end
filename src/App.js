@@ -5,6 +5,7 @@ import SignUp from './components/SignUp'
 import { Route, Link } from 'react-router-dom'
 import { Tab, Tabs, AppBar, Paper, Container } from "@material-ui/core"
 import headphones from './img/headphones.jpg'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 function App() {
 
@@ -22,35 +23,30 @@ function App() {
     .catch(err => console.log(err))
   },[])
   
-
   return (
     <div className='container'>
+      <CssBaseline />
       <div className='container-left' styles={{ backgroundImage:`url(${headphones})` }}>
       </div>
       <div className='container-right'>
         <Container maxWidth='sm'>
         <Paper square>
-          <AppBar position='static' color='default'>
+          <AppBar position='static'>
           <Tabs
               value={value}
               indicatorColor="secondary"
-              textColor="secondary"
               variant='fullWidth'
               onChange={handleChange}
-              aria-label="Sign In and Sign Up"
-            >
-              <Tab label="Sign In" component={ Link } to='/' />
-              <Tab label="Sign Up" component={ Link } to='/signup' />
+              aria-label="Sign In and Sign Up">
+              <Tab label="Sign In" component={Link} to='/' />
+              <Tab label="Sign Up" component={Link} to='/signup' />
           </Tabs>
         </AppBar>
         </Paper>
         </Container>
-  
-            
         <Route exact path='/'>
           <Login />
         </Route>
-
         <Route exact path='/signup'>
           <SignUp />
         </Route>
