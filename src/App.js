@@ -11,13 +11,13 @@ import RecommendationList from "./components/RecommendationList"
 function App() {
   return (
     <div className="App">
-      {/* <Navigation/> */}
+      <Navigation/>
       <Switch>  
       <PrivateRoute exact path='/dashboard' component={Dashboard} />
       <Route path='/login' render={(props) => <Login {...props}/>}/>
         <Route exact path='/login' component={Login} />
         <Route exact path='/signup' component={SignUpForm} />
-        <Route exact path='/recommendation' component={RecommendationList} />
+        <PrivateRoute exact path='/recommendation' component={RecommendationList} />
       </Switch>
     </div>
     

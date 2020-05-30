@@ -53,7 +53,7 @@ const FormikLoginForm = {
     handleSubmit(values, {resetForm, props, ...rest}){
         // rest.props.login({...values})
         axiosWithAuth()
-            .post('http://spotify-api-prod.herokuapp.com/auth/login', values)
+            .post('https://spotify-api-prod.herokuapp.com/auth/login', values)
             .then(res => {
                 localStorage.setItem('token', res.data.token);
                 props.props.history.push('/dashboard')

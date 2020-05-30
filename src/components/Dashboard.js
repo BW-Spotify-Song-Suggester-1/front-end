@@ -2,17 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 // import RecommendationList from './RecommendationList';
 import { connect } from 'react-redux';
-import { userRecs, trackRecs, clearRecs, SAVED_TRACKS } from '../actions';
-import TracksList from './TracksList'
-
+import { userRecs, trackRecs, clearRecs } from '../actions';
 
 const Dashboard = props => {
     const [spotify_playlist, setTrack_Id] = useState();
     // const [show, setShow] = useState(3)
-
-    const [saved_tracks, setSavedTracks] = useState([]);
-
-
 
     const handleChanges = e => {
         setTrack_Id({
@@ -51,35 +45,39 @@ const Dashboard = props => {
         props.clearRecs()
     }
 
-    const spotifyconnect = e => {
-        axiosWithAuth()
-            .get('/api/spotify/connect')
-            .then(res => {
-                console.log('Success: ', res.data)
-                localStorage.setItem('token', res.data.token);
-                axiosWithAuth()
-                    .get('/api/spotify/saved')
-                    .then(res => {
-                        setSavedTracks(res.data.items)
-                        // dispatch({ type: SAVED_TRACKS, payload: res.data.items });
-                    })                
-            })
-    }
-
-
     console.log('Track', spotify_playlist)
     console.log('Halp?', props.recs)
     console.log('user id: ', localStorage.getItem('user_id'))
     return (
         <div className='dashboard-container'>
             <h1>Welcome to your Dashboard</h1>
-            <button onClick={spotifyconnect}>test</button>
-            
             {/* <RecommendationList /> */}
             <section className='user-recs'>
                 <h2>Your Recommendations</h2>
-                <TracksList tracks={saved_tracks}/>
                 <button onClick={handleClear}>Clear Recommendations</button>
+                <div className='playlistRecsContainer'>
+                    {props.recs.map((music, index) => {
+                        return (
+                            <div key={index} className='musicBox'>
+                                <h3>{music.song}</h3>
+                                <p>{music.artist}</p>
+                                <p>{music.album}</p>
+                                <div className='trackButtons'>
+                                    <button onClick={() => window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
+                                    {/* <button onClick={handleClear}>Delete</button> */}
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+            <section>
+                <h2>Playlist Recommendations</h2>
+                <p>Enter a playlist URL to get started:</p>
+                <form className='playlistForm' onSubmit={link}>
+                    <input placeholder='Playlist URL' onChange={handleChanges}/>
+                    <button>Submit</button>
+                </form>
             </section>
         </div>
     )

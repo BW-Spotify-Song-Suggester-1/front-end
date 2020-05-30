@@ -24,6 +24,7 @@ const Navbar = (props) => {
             <a href="https://pulsified.netlify.app">Home </a>
             <a href="/login">Log In</a>
             <a href="/signup">Sign Up</a>
+            <a href="/recommendation">Recommendations</a>
           </NavLinks>
         </FlexContainer>
       </NavBar>

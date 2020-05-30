@@ -1,6 +1,6 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
-
+import { push } from "connected-react-router";
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
@@ -103,3 +103,25 @@ export const clearRecs = (playlist_id) => dispatch => {
             console.log('Problem deleting: ', err)
         })
 }
+
+const ID = localStorage.getItem("userID");
+
+export const UPDATE_USER_REQUEST = "UPDATE_USER_REQUEST";
+export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
+export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
+
+export const updateUser = (user, props) => dispatch => {
+  dispatch({ type: UPDATE_USER_REQUEST });
+axios()
+  .put(`/user/${ID}/user_settings`, user)
+    .then(response => {
+      dispatch({ type: UPDATE_USER_SUCCESS, payload: response.data });
+      dispatch(push('/'));
+    })
+    .catch(error => {
+      dispatch({
+        type: UPDATE_USER_FAILURE,
+        errorMessage: error.response.data.message
+      });
+    });
+};

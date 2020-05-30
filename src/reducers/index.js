@@ -11,7 +11,11 @@ import {
     CLEAR_START,
     CLEAR_SUCCESS,
     CLEAR_ERROR,
-    SAVED_TRACKS
+    SAVED_TRACKS,
+    UPDATE_USER_FAILURE,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_REQUEST
+
 } from '../actions';
 import { act } from 'react-dom/test-utils';
 
@@ -30,58 +34,71 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-        switch (action.type) {
-            case LOGIN_START:
-                return {
-                    ...state, loggingIn: true, error: false
-                };
-            case LOGIN_SUCCESS:
-                return {
-                    ...state, loggingIn: false, user_id: action.payload
-                };
-            case LOGIN_ERROR:
-                return {
-                    ...state, loggingIn: false, error: true, errorMssg: 'Invalid Login'
-                };
-            case FETCH_RECS:
-                return {
-                    ...state, fetching: true 
-                };
-            case FETCH_SUCCESS:
-                return {
-                    ...state, fetching: false, recs: action.payload
-                }
-            case FETCH_ERROR:
-                return {
-                    ...state, error: true, fetching: false, errorMssg: 'Error Retrieving Recommendations'
-                }
-            case TRACK_RECS:
-                return {
-                    ...state, errorMssg: '', error: false, fetching: true
-                }
-            case TRACK_SUCCESS:
-                return {
-                    ...state, fetching: false, similarRecs: action.payload
-                }
-            case TRACK_ERROR:
-                return {
-                    ...state, fetching: false, errorMssg: 'Oh oh, there was a problem retrieving similar tracks'
-                }
-            case CLEAR_START:
-                return {
-                    ...state, fetching: true
-                }
-            case CLEAR_SUCCESS:
-                return {
-                    ...state, recs: action.payload
-                }
-            case SAVED_TRACKS:
-                return {
-                    ...state, tracks: action.payload
-                };
-            default:
-                return state;
-        }
+    switch (action.type) {
+        case LOGIN_START:
+            return {
+                ...state, loggingIn: true, error: false
+            };
+        case LOGIN_SUCCESS:
+            return {
+                ...state, loggingIn: false, user_id: action.payload
+            };
+        case LOGIN_ERROR:
+            return {
+                ...state, loggingIn: false, error: true, errorMssg: 'Invalid Login'
+            };
+        case FETCH_RECS:
+            return {
+                ...state, fetching: true
+            };
+        case FETCH_SUCCESS:
+            return {
+                ...state, fetching: false, recs: action.payload
+            }
+        case FETCH_ERROR:
+            return {
+                ...state, error: true, fetching: false, errorMssg: 'Error Retrieving Recommendations'
+            }
+        case TRACK_RECS:
+            return {
+                ...state, errorMssg: '', error: false, fetching: true
+            }
+        case TRACK_SUCCESS:
+            return {
+                ...state, fetching: false, similarRecs: action.payload
+            }
+        case TRACK_ERROR:
+            return {
+                ...state, fetching: false, errorMssg: 'Oh oh, there was a problem retrieving similar tracks'
+            }
+        case CLEAR_START:
+            return {
+                ...state, fetching: true
+            }
+        case CLEAR_SUCCESS:
+            return {
+                ...state, recs: action.payload
+            }
+        case SAVED_TRACKS:
+            return {
+                ...state, tracks: action.payload
+            };
+        case UPDATE_USER_FAILURE:
+            return {
+                ...state, user:action.payload
+            };
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state, user:action.payload
+            };
+        case UPDATE_USER_REQUEST:
+            return {
+                ...state, user:action.payload
+            };
+
+        default:
+            return state;
+    }
 }
 
 export default reducer;

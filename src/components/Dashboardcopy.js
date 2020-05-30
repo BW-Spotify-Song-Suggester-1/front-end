@@ -80,30 +80,6 @@ const Dashboard = props => {
                 <h2>Your Recommendations</h2>
                 <TracksList tracks={saved_tracks}/>
                 <button onClick={handleClear}>Clear Recommendations</button>
-                <div className='playlistRecsContainer'>
-                    {props.recs.map((music, index) => {
-                        return (
-                            <div key={index} className='musicBox'>
-                                <h3>{music.song}</h3>
-                                <p>{music.artist}</p>
-                                <p>{music.album}</p>
-                                <div className='trackButtons'>
-                                    <button onClick={() => window.open(`https://open.spotify.com/track/${music.track_id}`, "_blank")}>Play</button>
-                                    {/* <button onClick={handleClear}>Delete</button> */}
-                                </div>
-                        </div>
-                        )
-                    })}
-                </div>
-                
-            </section>
-            <section>
-                <h2>Playlist Recommendations</h2>
-                <p>Enter a playlist URL to get started:</p>
-                <form className='playlistForm' onSubmit={link}>
-                    <input placeholder='Playlist URL' onChange={handleChanges}/>
-                    <button>Submit</button>
-                </form>
             </section>
         </div>
     )
