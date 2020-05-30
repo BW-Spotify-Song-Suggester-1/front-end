@@ -3,25 +3,37 @@ import { Button, TextField, Container  } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import { object, string } from "yup";
-
 const ColorButton = withStyles(theme => ({
   root: {
-    color: "white",
-    backgroundColor: "#FF1644",
+    color: "#fff",
+    backgroundColor: "#333333",
     "&:hover": {
-      backgroundColor: "#C0421D"
-    }
+      backgroundColor: "secondary"
+    },
+    borderColor: '#242424',
+    width: 540,
+    height: 40,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   }
 }))(Button);
 
-const useStyles = makeStyles(theme => ({  
-    margin: {
-      margin: theme.spacing(1)
-    },
-    width: {
-      width: 500
-    }
-})); 
+const useStyles = makeStyles(theme => ({ 
+      margin: {
+        margin: theme.spacing(1)
+      },
+      width: {
+        width: 200
+      },
+      textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        notchedOutline: {
+          border: '1px solid #fff',
+        },
+        borderRadius: 2     
+      },
+  })); 
 
 const initialState = {
   username: "",
@@ -58,9 +70,10 @@ const Login = props => {
         <div className='Wrapper'>
           <div className='wrapper'>
             <TextField
-              style={{ margin: 10 }}
-              color='secondary'
-              className={classes.width}
+              id="outlined-name"
+              style={{ margin: 15 }}
+              color='primary'
+              className={classes.textField}
               variant="outlined"
               name="username"
               error={!!errors.username}
@@ -73,9 +86,10 @@ const Login = props => {
           </div>
           <div className='password'>
             <TextField
-              style={{ margin: 10 }}
-              color='secondary'
-              className={classes.width}
+              id="outlined-password"
+              style={{ margin: 15 }}
+              color='primary'
+              className={classes.textField}
               variant="outlined"
               name="password"
               error={!!errors.password}
@@ -88,7 +102,7 @@ const Login = props => {
           </div>
           <div className='btn`'>
             <ColorButton
-              style={{ margin: 10, width: 520 }}
+              style={{ margin: 7.5 }}
               type="submit"
               variant="contained"
               color="secondary"

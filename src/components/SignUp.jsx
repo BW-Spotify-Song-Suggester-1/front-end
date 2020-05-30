@@ -8,21 +8,28 @@ import { object, string } from "yup";
 
 const ColorButton = withStyles(theme => ({
   root: {
-    color: "white",
-    backgroundColor: "#FF1644",
+    color: "#fff",
+    backgroundColor: "#333333",
     "&:hover": {
-      backgroundColor: "#FF1644"
-    }
+      backgroundColor: "secondary"
+    },
+    borderColor: '#242424',
+    width: 540,
+    height: 40,
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   }
 }))(Button);
 
 const useStyles = makeStyles(theme => ({  
-  margin: {
-    margin: theme.spacing(1)
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    notchedOutline: {
+      border: '1px solid #fff',
+    },
+    borderRadius: 2     
   },
-  width: {
-    width: 500
-  }
 }));
 
 const initialState = {
@@ -31,11 +38,13 @@ const initialState = {
   username: "",
   password: ""
 };
+
 const SignUp = props => {
   const history = useHistory()
   const classes = useStyles()
 
   const [newUser, setNewUser] = useState(initialState);
+
   const schema = object().shape({
     first_name: string().required("First Name is required"),
     last_name: string().required("Last Name is required"),
@@ -80,10 +89,10 @@ const SignUp = props => {
           <div className='first-name'>
             <TextField 
               style={{ margin: 15 }}
-              className={classes.width}
-              color='secondary'
+              className={classes.textField}
+              color='primary'
+              id='outlined-name'
               variant="outlined"
-              required
               name="first_name"
               error={!!errors.first_name}
               label="First Name"
@@ -95,11 +104,11 @@ const SignUp = props => {
           </div>
           <div className='last-name'>
             <TextField
-              className={classes.width}
+              className={classes.textField}
               style={{ margin: 15 }}
-              color='secondary'
+              color='primary'
+              id='outlined-name'
               variant="outlined"
-              required
               name="last_name"
               error={!!errors.last_name}
               label="Last Name"
@@ -111,12 +120,12 @@ const SignUp = props => {
           </div>
           <div className='username'>
             <TextField
-              className={classes.width}
+              className={classes.textField}
               style={{ margin: 15 }}
-              color='secondary'
+              color='primary'
+              id='outlined-name'
               variant="outlined"
-              required
-              name="username"
+              name="Email"
               error={!!errors.username}
               label="Username"
               helperText={errors.username ? errors.username.message : ""}
@@ -127,11 +136,11 @@ const SignUp = props => {
           </div>
           <div className='password'>
             <TextField
-              className={ classes.width }
+              className={classes.textField}
               style={{ margin: 15 }}
-              color='secondary'
+              color='primary'
+              id='outlined-password'
               variant="outlined"
-              required
               name="password"
               error={!!errors.password}
               label="Password"
@@ -143,7 +152,7 @@ const SignUp = props => {
           </div>
           <div className='btn'>
             <ColorButton
-              style={{ margin: 15, width: 520 }}
+              style={{ margin: 7.5 }}
               type="submit"
               variant="contained"
               color="secondary"
