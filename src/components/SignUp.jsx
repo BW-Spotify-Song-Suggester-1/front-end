@@ -90,7 +90,7 @@ const SignUp = props => {
             <TextField 
               style={{ margin: 15 }}
               className={classes.textField}
-              color='primary'
+              color='secondary'
               id='outlined-name'
               variant="outlined"
               name="first_name"
@@ -106,7 +106,7 @@ const SignUp = props => {
             <TextField
               className={classes.textField}
               style={{ margin: 15 }}
-              color='primary'
+              color='secondary'
               id='outlined-name'
               variant="outlined"
               name="last_name"
@@ -122,7 +122,7 @@ const SignUp = props => {
             <TextField
               className={classes.textField}
               style={{ margin: 15 }}
-              color='primary'
+              color='secondary'
               id='outlined-name'
               variant="outlined"
               name="Email"
@@ -138,7 +138,7 @@ const SignUp = props => {
             <TextField
               className={classes.textField}
               style={{ margin: 15 }}
-              color='primary'
+              color='secondary'
               id='outlined-password'
               variant="outlined"
               name="password"

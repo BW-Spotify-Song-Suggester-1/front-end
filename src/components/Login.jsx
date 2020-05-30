@@ -72,7 +72,7 @@ const Login = props => {
             <TextField
               id="outlined-name"
               style={{ margin: 15 }}
-              color='primary'
+              color='secondary'
               className={classes.textField}
               variant="outlined"
               name="username"
@@ -88,7 +88,7 @@ const Login = props => {
             <TextField
               id="outlined-password"
               style={{ margin: 15 }}
-              color='primary'
+              color='secondary'
               className={classes.textField}
               variant="outlined"
               name="password"
